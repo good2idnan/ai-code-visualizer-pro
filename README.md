@@ -7,7 +7,7 @@
 [![JavaScript ES6+](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Chart.js](https://img.shields.io/badge/Chart.js-v4-FF6384.svg)](https://www.chartjs.org/)
 
-**An intelligent, production-grade code analysis platform that combines traditional software engineering expertise with cutting-edge AI/ML capabilities.** Built by a senior engineer with 10+ years in PHP and 3+ years in AI/ML.
+**An intelligent, production-grade code analysis platform that combines traditional software engineering expertise with cutting-edge AI/ML capabilities.** 
 
 ---
 
@@ -317,18 +317,6 @@ All endpoints accept `POST` requests with JSON body:
 ## 📝 License
 
 MIT License - See LICENSE file for details
-
----
-
-## 👤 About the Author
-
-**Senior Software Engineer**
-- **10+ years** in PHP development and software architecture
-- **3+ years** in AI/ML, neural networks, and deep learning
-- Passionate about building intelligent developer tools
-
-### Connect
-- **GitHub**: [@good2idnan](https://github.com/good2idnan)
 
 ---
 
