@@ -1,0 +1,28 @@
+{
+    "name": "ai-code-visualizer/backend",
+    "description": "AI-Powered Code Analysis Backend with PHP-Parser and ML Integration",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "nikic/php-parser": "^4.15",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AICodeVisualizer\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public/",
+        "test": "phpunit tests/",
+        "analyze": "php public/index.php"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

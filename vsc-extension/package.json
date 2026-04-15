@@ -1,0 +1,187 @@
+{
+    "name": "ai-code-visualizer",
+    "displayName": "AI Code Visualizer",
+    "description": "AI-powered code analysis with neural network visualization, pattern detection, and smart refactoring suggestions",
+    "version": "2.0.0",
+    "publisher": "ai-code-visualizer",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Linters",
+        "Machine Learning",
+        "Visualization"
+    ],
+    "activationEvents": [
+        "onCommand:ai-code-visualizer.analyze",
+        "onCommand:ai-code-visualizer.securityScan",
+        "onCommand:ai-code-visualizer.refactor",
+        "onCommand:ai-code-visualizer.showDashboard",
+        "onLanguage:php",
+        "onLanguage:python",
+        "onLanguage:javascript",
+        "onLanguage:go"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "ai-code-visualizer.analyze",
+                "title": "AI Code Visualizer: Analyze Code",
+                "icon": "$(brain)",
+                "category": "AI Code Visualizer"
+            },
+            {
+                "command": "ai-code-visualizer.securityScan",
+                "title": "AI Code Visualizer: Security Scan",
+                "icon": "$(shield)",
+                "category": "AI Code Visualizer"
+            },
+            {
+                "command": "ai-code-visualizer.refactor",
+                "title": "AI Code Visualizer: Suggest Refactoring",
+                "icon": "$(wand)",
+                "category": "AI Code Visualizer"
+            },
+            {
+                "command": "ai-code-visualizer.showDashboard",
+                "title": "AI Code Visualizer: Show Dashboard",
+                "icon": "(graph)",
+                "category": "AI Code Visualizer"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "when": "editorLangId == php || editorLangId == python || editorLangId == javascript || editorLangId == go",
+                    "command": "ai-code-visualizer.analyze",
+                    "group": "navigation"
+                },
+                {
+                    "when": "editorLangId == php",
+                    "command": "ai-code-visualizer.securityScan",
+                    "group": "navigation"
+                }
+            ],
+            "editor/context": [
+                {
+                    "when": "editorLangId == php || editorLangId == python || editorLangId == javascript || editorLangId == go",
+                    "command": "ai-code-visualizer.analyze",
+                    "group": "ai-code-visualizer"
+                },
+                {
+                    "when": "editorLangId == php",
+                    "command": "ai-code-visualizer.securityScan",
+                    "group": "ai-code-visualizer"
+                },
+                {
+                    "command": "ai-code-visualizer.refactor",
+                    "group": "ai-code-visualizer"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "AI Code Visualizer",
+            "properties": {
+                "aiCodeVisualizer.backendUrl": {
+                    "type": "string",
+                    "default": "http://localhost:8080",
+                    "description": "URL of the AI Code Visualizer backend server"
+                },
+                "aiCodeVisualizer.enableRealTimeAnalysis": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable real-time code analysis as you type"
+                },
+                "aiCodeVisualizer.showNeuralVisualization": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show neural network visualization panel"
+                },
+                "aiCodeVisualizer.enabledLanguages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["php", "python", "javascript", "go"]
+                    },
+                    "default": ["php", "python", "javascript", "go"],
+                    "description": "Programming languages to analyze"
+                },
+                "aiCodeVisualizer.securityScanOnSave": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run security scan automatically on file save"
+                },
+                "aiCodeVisualizer.qualityThreshold": {
+                    "type": "number",
+                    "default": 7.0,
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Minimum acceptable code quality score"
+                }
+            }
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "ai-code-visualizer",
+                    "title": "AI Code Visualizer",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "ai-code-visualizer": [
+                {
+                    "id": "ai-code-visualizer.dashboard",
+                    "name": "Analysis Dashboard"
+                },
+                {
+                    "id": "ai-code-visualizer.security",
+                    "name": "Security Issues"
+                },
+                {
+                    "id": "ai-code-visualizer.patterns",
+                    "name": "Detected Patterns"
+                }
+            ]
+        },
+        "problemMatchers": [
+            {
+                "name": "ai-code-visualizer",
+                "owner": "ai-code-visualizer",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^(warning|error|info):\\s+(.*)$",
+                    "message": 2,
+                    "severity": 1
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts",
+        "test": "npm run compile && node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "@types/node": "^20.0.0",
+        "typescript": "^5.3.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "eslint": "^8.47.0"
+    },
+    "dependencies": {
+        "axios": "^1.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ai-code-visualizer/vscode-extension"
+    },
+    "license": "MIT",
+    "icon": "resources/icon.png"
+}
